@@ -20,33 +20,34 @@ public class Program {
 
         switch (cmd){
             case "add":
-                String dsc = args[1];
-                Task t = new Task(tm.newId(), dsc);
+                String taskDescription = args[1];
+                Task t = new Task(tm.newId(), taskDescription);
                 tm.add(t);
+                System.out.println("Task added successfully (ID: " + t.getId() + ")");
                 break;
             case "delete":
-                String id = args[1];
-                tm.delete(Integer.valueOf(id));
+                String deleteId = args[1];
+                tm.delete(Integer.valueOf(deleteId));
                 break;
             case "update":
-                String id2 = args[1];
-                String ndsc = args[2];
-                tm.update(Integer.valueOf(id2), ndsc);
+                String updateId = args[1];
+                String newDescription = args[2];
+                tm.update(Integer.valueOf(updateId), newDescription);
                 break;
             case "mark-in-progress":
-                String id3 = args[1];
-                tm.markInProgress(Integer.valueOf(id3));
+                String inProgressId = args[1];
+                tm.markInProgress(Integer.valueOf(inProgressId));
                 break;
             case "mark-done":
-                String id4 = args[1];
-                tm.markDone(Integer.valueOf(id4));
+                String doneId = args[1];
+                tm.markDone(Integer.valueOf(doneId));
                 break;
             case  "list":
                 if (args.length < 2){
                     System.out.println(gson.toJson(tm.listAll()));
                 }else {
-                    String cmd2 = args[1];
-                    switch (cmd2){
+                    String listType = args[1];
+                    switch (listType){
                         case "done":
                             System.out.println(gson.toJson(tm.listDone()));
                             break;
