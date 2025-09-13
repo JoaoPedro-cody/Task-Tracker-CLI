@@ -30,4 +30,4 @@ bin/
 
 *.class
 
-src/files/tasks.json
+tasks.json

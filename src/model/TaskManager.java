@@ -14,7 +14,6 @@ public class TaskManager {
     private static final String FILE_NAME = "files/tasks.json";
     Gson gs = new GsonBuilder().setPrettyPrinting().create();
 
-
     public TaskManager() {
     }
 
