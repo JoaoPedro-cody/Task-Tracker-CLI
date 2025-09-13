@@ -18,36 +18,6 @@ public class TaskManager {
     public TaskManager() {
     }
 
-    public void saveTasks(){
-
-        if (list.isEmpty()) {
-            File file = new File(FILE_NAME);
-            if (file.exists()){
-                file.delete();
-            }
-            return;
-        }
-
-        try (Writer writer = new FileWriter(FILE_NAME)){
-            gs.toJson(list, writer);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void loadTasks(){
-        try (Reader reader = new FileReader(FILE_NAME)){
-
-            list = gs.fromJson(reader, new TypeToken<List<Task>>(){}.getType());
-            if (list == null){
-                list = new ArrayList<>();
-            }
-        } catch (FileNotFoundException e){
-            list = new ArrayList<>();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     public Integer newId(){
         Integer id = 1;
@@ -77,5 +47,45 @@ public class TaskManager {
             }
         }
         return list;
+    }
+
+    public List<Task> markInProgress(Integer id){
+        for (Task t: list){
+            if (t.getId().equals(id)){
+                t.setStatus("in-progress");
+            }
+        }
+        return list;
+    }
+
+    public void saveTasks(){
+
+        if (list.isEmpty()) {
+            File file = new File(FILE_NAME);
+            if (file.exists()){
+                file.delete();
+            }
+            return;
+        }
+
+        try (Writer writer = new FileWriter(FILE_NAME)){
+            gs.toJson(list, writer);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void loadTasks(){
+        try (Reader reader = new FileReader(FILE_NAME)){
+
+            list = gs.fromJson(reader, new TypeToken<List<Task>>(){}.getType());
+            if (list == null){
+                list = new ArrayList<>();
+            }
+        } catch (FileNotFoundException e){
+            list = new ArrayList<>();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
