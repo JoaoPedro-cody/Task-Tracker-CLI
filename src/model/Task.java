@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 public class Task {
@@ -14,12 +13,12 @@ public class Task {
     public Task() {
     }
 
-    public Task(Integer id, String description, String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Task(Integer id, String description) {
         this.id = id;
         this.description = description;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.status = "TODO";
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     public Integer getId() {
