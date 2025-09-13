@@ -1,6 +1,7 @@
 package model;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
@@ -11,8 +12,7 @@ import java.util.List;
 public class TaskManager {
     private List<Task> list = new ArrayList<>();
     private static final String FILE_NAME = "files/tasks.json";
-
-    Gson gs = new Gson();
+    Gson gs = new GsonBuilder().setPrettyPrinting().create();
 
 
     public TaskManager() {
@@ -29,42 +29,37 @@ public class TaskManager {
         return id;
     }
 
-    public List<Task> add(Task t){
+    public void add(Task t){
         list.add(t);
-        return list;
     }
 
-    public List<Task> delete(Integer id){
+    public void delete(Integer id){
         list.removeIf(t -> t.getId().equals(id));
-        return list;
     }
 
-    public List<Task> update(Integer id, String s){
+    public void update(Integer id, String s){
         for (Task t : list){
             if (id != null && id.equals(t.getId())){
                 t.setDescription(s);
                 t.setUpdatedAt(LocalDateTime.now().toString());
             }
         }
-        return list;
     }
 
-    public List<Task> markInProgress(Integer id){
+    public void markInProgress(Integer id){
         for (Task t: list){
             if (t.getId().equals(id)){
                 t.setStatus("in-progress");
             }
         }
-        return list;
     }
 
-    public List<Task> markDone(Integer id){
+    public void markDone(Integer id){
         for (Task t: list){
             if (t.getId().equals(id)){
                 t.setStatus("Done");
             }
         }
-        return list;
     }
 
     public List<Task> listAll(){
