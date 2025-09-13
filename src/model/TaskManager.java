@@ -78,7 +78,7 @@ public class TaskManager {
     public List<Task> listToDo(){
         List<Task> listToDo = new ArrayList<>();
         for (Task t : list){
-            if (t.getStatus().equals("TODO")){
+            if (t.getStatus().equals("Todo")){
                 listToDo.add(t);
             }
         }
@@ -88,7 +88,7 @@ public class TaskManager {
     public List<Task> listInProgress(){
         List<Task> listInProgress = new ArrayList<>();
         for (Task t : list){
-            if (t.getStatus().equals("in-progress")){
+            if (t.getStatus().equals("In-progress")){
                 listInProgress.add(t);
             }
         }
