@@ -67,6 +67,40 @@ public class TaskManager {
         return list;
     }
 
+    public List<Task> listAll(){
+        return list;
+    }
+
+    public List<Task> listDone(){
+        List<Task> listDone = new ArrayList<>();
+        for (Task t : list){
+            if (t.getStatus().equals("Done")){
+                listDone.add(t);
+            }
+        }
+        return listDone;
+    }
+
+    public List<Task> listToDo(){
+        List<Task> listToDo = new ArrayList<>();
+        for (Task t : list){
+            if (t.getStatus().equals("TODO")){
+                listToDo.add(t);
+            }
+        }
+        return listToDo;
+    }
+
+    public List<Task> listInProgress(){
+        List<Task> listInProgress = new ArrayList<>();
+        for (Task t : list){
+            if (t.getStatus().equals("in-progress")){
+                listInProgress.add(t);
+            }
+        }
+        return listInProgress;
+    }
+
     public void saveTasks(){
 
         if (list.isEmpty()) {
