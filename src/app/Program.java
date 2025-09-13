@@ -3,12 +3,18 @@ package app;
 import model.Task;
 import model.TaskManager;
 
+import java.io.File;
+
 public class Program {
     public static void main(String[] args) {
-
+        File file = new File("files/tasks.json");
         String cmd = args[0];
 
         TaskManager tm = new TaskManager();
+
+        if (file.exists()){
+            tm.loadTasks();
+        }
 
         switch (cmd){
             case "add":
@@ -28,5 +34,7 @@ public class Program {
                 System.out.println((tm.update(Integer.valueOf(id2), ndsc)));
                 break;
         }
+
+        tm.saveTasks();
     }
 }

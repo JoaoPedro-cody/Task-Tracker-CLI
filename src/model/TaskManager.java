@@ -1,13 +1,52 @@
 package model;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskManager {
     private List<Task> list = new ArrayList<>();
+    private static final String FILE_NAME = "files/tasks.json";
+
+    Gson gs = new Gson();
+
 
     public TaskManager() {
+    }
+
+    public void saveTasks(){
+
+        if (list.isEmpty()) {
+            File file = new File(FILE_NAME);
+            if (file.exists()){
+                file.delete();
+            }
+            return;
+        }
+
+        try (Writer writer = new FileWriter(FILE_NAME)){
+            gs.toJson(list, writer);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void loadTasks(){
+        try (Reader reader = new FileReader(FILE_NAME)){
+
+            list = gs.fromJson(reader, new TypeToken<List<Task>>(){}.getType());
+            if (list == null){
+                list = new ArrayList<>();
+            }
+        } catch (FileNotFoundException e){
+            list = new ArrayList<>();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public Integer newId(){
@@ -34,7 +73,7 @@ public class TaskManager {
         for (Task t : list){
             if (id != null && id.equals(t.getId())){
                 t.setDescription(s);
-                t.setUpdatedAt(LocalDateTime.now());
+                t.setUpdatedAt(LocalDateTime.now().toString());
             }
         }
         return list;
