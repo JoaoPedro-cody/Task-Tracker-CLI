@@ -9,7 +9,6 @@ public class Program {
     public static void main(String[] args) {
         File file = new File("files/tasks.json");
         String cmd = args[0];
-
         TaskManager tm = new TaskManager();
 
         if (file.exists()){
@@ -19,9 +18,7 @@ public class Program {
         switch (cmd){
             case "add":
                 String dsc = args[1];
-
                 Task t = new Task(tm.newId(), dsc);
-
                 System.out.println(tm.add(t));
                 break;
             case "delete":
@@ -40,6 +37,24 @@ public class Program {
             case "mark-done":
                 String id4 = args[1];
                 System.out.println(tm.markDone(Integer.valueOf(id4)));
+                break;
+            case  "list":
+                if (args.length < 2){
+                    System.out.println(tm.listAll());
+                }else {
+                    String cmd2 = args[1];
+                    switch (cmd2){
+                        case "done":
+                            System.out.println(tm.listDone());
+                            break;
+                        case "in-progress":
+                            System.out.println(tm.listInProgress());
+                            break;
+                        case "todo":
+                            System.out.println(tm.listToDo());
+                            break;
+                    }
+                }
         }
 
         tm.saveTasks();
