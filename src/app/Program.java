@@ -31,8 +31,11 @@ public class Program {
             case "update":
                 String id2 = args[1];
                 String ndsc = args[2];
-                System.out.println((tm.update(Integer.valueOf(id2), ndsc)));
+                System.out.println(tm.update(Integer.valueOf(id2), ndsc));
                 break;
+            case "mark-in-progress":
+                String id3 = args[1];
+                System.out.println(tm.markInProgress(Integer.valueOf(id3)));
         }
 
         tm.saveTasks();
