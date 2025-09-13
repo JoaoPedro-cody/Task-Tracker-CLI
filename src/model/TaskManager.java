@@ -58,6 +58,15 @@ public class TaskManager {
         return list;
     }
 
+    public List<Task> markDone(Integer id){
+        for (Task t: list){
+            if (t.getId().equals(id)){
+                t.setStatus("Done");
+            }
+        }
+        return list;
+    }
+
     public void saveTasks(){
 
         if (list.isEmpty()) {

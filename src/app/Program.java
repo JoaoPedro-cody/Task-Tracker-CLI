@@ -36,6 +36,10 @@ public class Program {
             case "mark-in-progress":
                 String id3 = args[1];
                 System.out.println(tm.markInProgress(Integer.valueOf(id3)));
+                break;
+            case "mark-done":
+                String id4 = args[1];
+                System.out.println(tm.markDone(Integer.valueOf(id4)));
         }
 
         tm.saveTasks();
