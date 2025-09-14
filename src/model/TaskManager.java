@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TaskManager {
     private List<Task> list = new ArrayList<>();
-    private static final String FILE_NAME = "files/tasks.json";
+    private static final String FILE_NAME = "tasks.json";
     Gson gs = new GsonBuilder().setPrettyPrinting().create();
 
     public TaskManager() {
