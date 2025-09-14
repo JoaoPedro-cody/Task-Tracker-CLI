@@ -9,7 +9,7 @@ import java.io.File;
 
 public class Program {
     public static void main(String[] args) {
-        File file = new File("files/tasks.json");
+        File file = new File("tasks.json");
         String cmd = args[0];
         TaskManager tm = new TaskManager();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
