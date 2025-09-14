@@ -1,9 +1,5 @@
 package model;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,12 +7,17 @@ import java.util.List;
 
 public class TaskManager {
     private List<Task> list = new ArrayList<>();
-    private static final String FILE_NAME = "tasks.json";
-    Gson gs = new GsonBuilder().setPrettyPrinting().create();
 
     public TaskManager() {
     }
 
+    public List<Task> getList() {
+        return list;
+    }
+
+    public void setList(List<Task> list) {
+        this.list = list;
+    }
 
     public Integer newId(){
         Integer id = 1;
@@ -48,7 +49,7 @@ public class TaskManager {
     public void markInProgress(Integer id){
         for (Task t: list){
             if (t.getId().equals(id)){
-                t.setStatus("in-progress");
+                t.setStatus("In-progress");
             }
         }
     }
@@ -93,36 +94,5 @@ public class TaskManager {
             }
         }
         return listInProgress;
-    }
-
-    public void saveTasks(){
-
-        if (list.isEmpty()) {
-            File file = new File(FILE_NAME);
-            if (file.exists()){
-                file.delete();
-            }
-            return;
-        }
-
-        try (Writer writer = new FileWriter(FILE_NAME)){
-            gs.toJson(list, writer);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void loadTasks(){
-        try (Reader reader = new FileReader(FILE_NAME)){
-
-            list = gs.fromJson(reader, new TypeToken<List<Task>>(){}.getType());
-            if (list == null){
-                list = new ArrayList<>();
-            }
-        } catch (FileNotFoundException e){
-            list = new ArrayList<>();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
     }
 }

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.Task;
 import model.TaskManager;
+import model.TaskRepository;
 
 import java.io.File;
 
@@ -12,10 +13,11 @@ public class Program {
         File file = new File("tasks.json");
         String cmd = args[0];
         TaskManager tm = new TaskManager();
+        TaskRepository tr = new TaskRepository();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         if (file.exists()){
-            tm.loadTasks();
+            tm.setList(tr.loadTasks());
         }
 
         switch (cmd){
@@ -61,6 +63,6 @@ public class Program {
                 }
         }
 
-        tm.saveTasks();
+        tr.saveTasks(tm.getList());
     }
 }
