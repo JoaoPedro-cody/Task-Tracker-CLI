@@ -5,7 +5,7 @@ All tasks are stored in a JSON file, making it lightweight and portable.
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 - **Java 17** or later installed on your machine
@@ -17,7 +17,7 @@ git clone git@github.com:JoaoPedro-cody/Task-Tracker-CLI.git
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### Add a new task
 ```bash
@@ -46,7 +46,7 @@ java -jar task-cli.jar mark-in-progress <task-id>
 
 ---
 
-## 📋 List Tasks
+## List Tasks
 
 - **All tasks**
 ```bash
@@ -70,7 +70,7 @@ java -jar task-cli.jar list in-progress
 
 ---
 
-## 🔄 Example Workflow
+## Example Workflow
 ```bash
 # Add a new task
 java -jar task-cli.jar add "Study Java"
@@ -84,7 +84,7 @@ java -jar task-cli.jar mark-done 1
 
 ---
 
-## ✅ Features
+## Features
 - Add tasks  
 - Update task description by ID  
 - Delete tasks  
@@ -93,6 +93,6 @@ java -jar task-cli.jar mark-done 1
 
 ---
 
-## 👨‍💻 Author
+## Author
 Developed by **Joao** – [GitHub](https://github.com/JoaoPedro-cody)
 
