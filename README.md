@@ -12,7 +12,7 @@ All tasks are stored in a JSON file, making it lightweight and portable.
 
 ### Clone the Repository
 ```bash
-git clone git@github.com:JoaoPedro-cody/Task-Tracker-CLI.git
+git clone github.com/JoaoPedro-cody/Task-Tracker-CLI
 ```
 
 ---
