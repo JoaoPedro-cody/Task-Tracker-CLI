@@ -30,11 +30,13 @@ public class Program {
             case "delete":
                 String deleteId = args[1];
                 tm.delete(Integer.valueOf(deleteId));
+                System.out.println("Task deleted successfully (ID: " + deleteId + ")");
                 break;
             case "update":
                 String updateId = args[1];
                 String newDescription = args[2];
                 tm.update(Integer.valueOf(updateId), newDescription);
+                System.out.println("Task updated successfully (ID: " + updateId + ")");
                 break;
             case "mark-in-progress":
                 String inProgressId = args[1];
