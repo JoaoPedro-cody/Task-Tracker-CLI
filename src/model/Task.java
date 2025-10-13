@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Task {
@@ -17,8 +18,8 @@ public class Task {
         this.id = id;
         this.description = description;
         this.status = "Todo";
-        this.createdAt = LocalDateTime.now().toString();
-        this.updatedAt = LocalDateTime.now().toString();
+        this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        this.updatedAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
     }
 
     public Integer getId() {

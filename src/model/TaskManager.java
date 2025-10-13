@@ -2,6 +2,7 @@ package model;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class TaskManager {
         for (Task t : list){
             if (id != null && id.equals(t.getId())){
                 t.setDescription(s);
-                t.setUpdatedAt(LocalDateTime.now().toString());
+                t.setUpdatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
             }
         }
     }
@@ -50,6 +51,7 @@ public class TaskManager {
         for (Task t: list){
             if (t.getId().equals(id)){
                 t.setStatus("In-progress");
+                t.setUpdatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
             }
         }
     }
@@ -58,6 +60,7 @@ public class TaskManager {
         for (Task t: list){
             if (t.getId().equals(id)){
                 t.setStatus("Done");
+                t.setUpdatedAt(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
             }
         }
     }
