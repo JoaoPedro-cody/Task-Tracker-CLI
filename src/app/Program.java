@@ -1,20 +1,18 @@
 package app;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import model.Task;
 import model.TaskManager;
 import model.TaskRepository;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Program {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         File file = new File("tasks.json");
         String cmd = args[0];
         TaskManager tm = new TaskManager();
         TaskRepository tr = new TaskRepository();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         if (file.exists()){
             tm.setList(tr.loadTasks());
@@ -48,18 +46,18 @@ public class Program {
                 break;
             case  "list":
                 if (args.length < 2){
-                    System.out.println(gson.toJson(tm.listAll()));
+                    System.out.println(tm.listAll());
                 }else {
                     String listType = args[1];
                     switch (listType){
                         case "done":
-                            System.out.println(gson.toJson(tm.listDone()));
+                            System.out.println(tm.listDone());
                             break;
                         case "in-progress":
-                            System.out.println(gson.toJson(tm.listInProgress()));
+                            System.out.println(tm.listInProgress());
                             break;
                         case "todo":
-                            System.out.println(gson.toJson(tm.listToDo()));
+                            System.out.println(tm.listToDo());
                             break;
                     }
                 }
