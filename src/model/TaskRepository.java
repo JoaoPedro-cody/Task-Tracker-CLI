@@ -1,47 +1,55 @@
 package model;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskRepository {
-    private static final String FILE_NAME = "tasks.json";
+    private final Path FILE_PATH = Path.of("tasks.json");
     List<Task> tasks = new ArrayList<>();
-    Gson gs = new GsonBuilder().setPrettyPrinting().create();
 
-    public void saveTasks(List<Task> t) {
+    public void saveTasks(List<Task> tasks) {
 
-        if (t.isEmpty()) {
-            File file = new File(FILE_NAME);
-            if (file.exists()){
-                file.delete();
+        StringBuilder sb = new StringBuilder();
+        sb.append("[\n");
+        for (int i = 0; i < tasks.size(); i++){
+            sb.append(tasks.get(i).toJson());
+            if (i < tasks.size() - 1){
+                sb.append(",\n");
             }
-            return;
         }
+        sb.append("\n]");
 
-        try (Writer writer = new FileWriter(FILE_NAME)){
-            gs.toJson(t, writer);
-        } catch (IOException e){
+        String jsonResult = sb.toString();
+
+        try {
+            Files.writeString(FILE_PATH, jsonResult);
+        }catch (IOException e){
             e.printStackTrace();
         }
+
     }
 
-    public List<Task> loadTasks(){
-        try (Reader reader = new FileReader(FILE_NAME)){
+    public List<Task> loadTasks() throws IOException {
 
-            tasks = gs.fromJson(reader, new TypeToken<List<Task>>(){}.getType());
-            if (tasks == null){
-                tasks = new ArrayList<>();
+        String jsonContent = Files.readString(FILE_PATH);
+
+        // divide os objetos pelo padrão "},"
+        String[] taskList = jsonContent
+                .replace("[", "")
+                .replace("]", "")
+                .split("},");
+
+        for (String taskJson : taskList) {
+            taskJson = taskJson.trim();
+            if (!taskJson.endsWith("}")) {
+                taskJson = taskJson + "}";
             }
-        } catch (FileNotFoundException e){
-            tasks = new ArrayList<>();
-        } catch (IOException e){
-            e.printStackTrace();
+            tasks.add(Task.fromJson(taskJson));
         }
+
         return tasks;
     }
 }

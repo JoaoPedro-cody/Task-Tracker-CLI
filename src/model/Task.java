@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Objects;
 
 public class Task {
@@ -61,6 +62,35 @@ public class Task {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public static Task fromJson(String json) {
+        json = json.replace("{", "")
+                .replace("}", "")
+                .trim();
+
+        String[] jsons = json.split(",");
+
+        String id = jsons[0].split(":", 2)[1].replace("\"", "").strip();
+        String description = jsons[1].split(":", 2)[1].replace("\"", "").strip();
+        String status = jsons[2].split(":", 2)[1].replace("\"", "").strip();
+        String createdAt = jsons[3].split(":", 2)[1].replace("\"", "").strip();
+        String updatedAt = jsons[4].split(":", 2)[1].replace("\"", "").strip();
+
+        Task task = new Task();
+        task.setId(Integer.parseInt(id));
+        task.setDescription(description);
+        task.setStatus(status);
+        task.setCreatedAt(createdAt);
+        task.setUpdatedAt(updatedAt);
+
+        return task;
+    }
+
+    public String toJson(){
+        return "{\"id\":\"" + id + "\", \"description\":\"" + description.strip() + "\", \"status\":\"" + status +
+                "\", \"createdAt\":\"" + createdAt + "\", \"updatedAt\":\"" + updatedAt + "\"}";
+    }
+
 
     @Override
     public boolean equals(Object o) {
