@@ -3,8 +3,8 @@
 A simple **command-line application** built in **Java 17** to manage tasks efficiently.  
 All tasks are stored in a JSON file, making it lightweight and portable.
 
-projet : https://github.com/JoaoPedro-cody/Task-Tracker-CLI
-
+project : [https://github.com/JoaoPedro-cody/Task-Tracker-CLI
+](https://roadmap.sh/projects/task-tracker)
 ---
 
 ## Installation
