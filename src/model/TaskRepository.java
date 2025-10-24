@@ -36,7 +36,6 @@ public class TaskRepository {
 
         String jsonContent = Files.readString(FILE_PATH);
 
-        // divide os objetos pelo padrão "},"
         String[] taskList = jsonContent
                 .replace("[", "")
                 .replace("]", "")
