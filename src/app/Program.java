@@ -46,18 +46,18 @@ public class Program {
                 break;
             case  "list":
                 if (args.length < 2){
-                    System.out.println(tm.listAll());
+                    tm.listAll().forEach(System.out::println);
                 }else {
                     String listType = args[1];
                     switch (listType){
                         case "done":
-                            System.out.println(tm.listDone());
+                            tm.listDone().forEach(System.out::println);
                             break;
                         case "in-progress":
-                            System.out.println(tm.listInProgress());
+                            tm.listInProgress().forEach(System.out::println);
                             break;
                         case "todo":
-                            System.out.println(tm.listToDo());
+                            tm.listToDo().forEach(System.out::println);
                             break;
                     }
                 }

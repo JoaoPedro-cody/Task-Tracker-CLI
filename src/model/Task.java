@@ -87,8 +87,12 @@ public class Task {
     }
 
     public String toJson(){
-        return "{\"id\":\"" + id + "\", \"description\":\"" + description.strip() + "\", \"status\":\"" + status +
-                "\", \"createdAt\":\"" + createdAt + "\", \"updatedAt\":\"" + updatedAt + "\"}";
+        return "{\"id\":\"" + id + "\"," +
+                "\"description\":\"" + description.strip() + "\", " +
+                "\"status\":\"" + status + "\", " +
+                "\"createdAt\":\"" + createdAt + "\", " +
+                "\"updatedAt\":\"" + updatedAt +
+                "\"}";
     }
 
 
@@ -106,12 +110,12 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", status='" + status + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
+        return "Task{\n" +
+                "   \"id\": " + "\"" + id + "\"" +",\n" +
+                "   \"description\": " + "\"" + description + "\"" +  ",\n" +
+                "   \"status\": " + "\"" + status +  "\"" + ",\n" +
+                "   \"createdAt\": " + "\"" + createdAt + "\"" + ",\n" +
+                "   \"updatedAt\": " + "\"" + updatedAt + "\"" + "\n" +
                 '}';
     }
 }
