@@ -21,29 +21,35 @@ git clone https://github.com/JoaoPedro-cody/Task-Tracker-CLI.git
 
 ## Usage
 
+### Enter src and then compile
+```bash
+cd src
+javac */*.java
+```
+
 ### Add a new task
 ```bash
-java -jar task-cli.jar add "New Task"
+java app.Program add "New Task"
 ```
 
 ### Update a task description by ID
 ```bash
-java -jar task-cli.jar update <task-id> "Updated Task Description"
+java app.Program update <task-id> "Updated Task Description"
 ```
 
 ### Delete a task by ID
 ```bash
-java -jar task-cli.jar delete <task-id>
+java app.Program delete <task-id>
 ```
 
 ### Mark a task as done
 ```bash
-java -jar task-cli.jar mark-done <task-id>
+java app.Program mark-done <task-id>
 ```
 
 ### Mark a task as in-progress
 ```bash
-java -jar task-cli.jar mark-in-progress <task-id>
+java app.Program mark-in-progress <task-id>
 ```
 
 ---
@@ -52,22 +58,22 @@ java -jar task-cli.jar mark-in-progress <task-id>
 
 - **All tasks**
 ```bash
-java -jar task-cli.jar list
+java app.Program list
 ```
 
 - **Completed tasks**
 ```bash
-java -jar task-cli.jar list done
+java app.Program list done
 ```
 
 - **Pending tasks**
 ```bash
-java -jar task-cli.jar list todo
+java app.Program list todo
 ```
 
 - **In-progress tasks**
 ```bash
-java -jar task-cli.jar list in-progress
+java app.Program list in-progress
 ```
 
 ---
@@ -75,13 +81,13 @@ java -jar task-cli.jar list in-progress
 ## Example Workflow
 ```bash
 # Add a new task
-java -jar task-cli.jar add "Study Java"
+java app.Program add "Study Java"
 
 # List all tasks
-java -jar task-cli.jar list
+java app.Program list
 
 # Mark the first task as done
-java -jar task-cli.jar mark-done 1
+java app.Program mark-done 1
 ```
 
 ---
